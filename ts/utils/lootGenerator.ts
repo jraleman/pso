@@ -24,13 +24,13 @@ export const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
     } = percentages;
     const p1 = `${native}${aBeast}`; // "${SS00}${PPPP}",
     const p2 = `${machine}${dark}${hit}`; // "${PPPPPPPP}",
-    const arguments = [
+    const args = [
         `${weaponId}${grind}`,
         `${special}00${p1}`,
         `${p2}00`,
         '0'
     ];
-    return `${command} ${arguments}`;
+    return `${command} ${args}`;
 };
 
 // ----------------------------------------------------------------------------
@@ -55,13 +55,13 @@ export const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
 
 export const itemGenerator = ({ itemId, amount }) => {
     const command = '/item';
-    const arguments = [
+    const args = [
         `${itemId}00`, // VVVVVV00,
         `00${amount}0000`,
         '0',
         '0'
     ];
-    return `${command} ${arguments}`;
+    return `${command} ${args}`;
 };
 
 // console.log(
@@ -92,3 +92,10 @@ export const itemGenerator = ({ itemId, amount }) => {
 // For meseta:
 
 // /addmeseta (amount in decimal)
+
+export const addMeseta = ({ amount }) => {
+    const command = '/addmeseta';
+    const args = [ amount ];
+
+    return `${command} ${args}`;
+}
