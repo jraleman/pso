@@ -1,45 +1,37 @@
-export const demoWeapons = {};
+// pre-defined weapons
+export const nullValue = '000000';
+export const tsumikiriJSword = '003300';
+export const redSword = '003400';
+export const zanba = '009700';
+export const darkFlow = '009D00';
+export const frozenShooter = '004500';
+export const bringerRifle = '001B00';
+export const spreadNeedle = '001200';
+export const glideDivine = '00C500';
 
-// Mock Data
-const defaultValue = {
-    weaponId: '000000',
-    grind: '00', // check boundary of weapons
-    special: '00',
+export const weaponId = nullValue;
+export const grind = '00';
+export const special = '00';
+export const native = '00';
+export const aBeast = '00';
+export const machine = '00';
+export const dark = '00';
+export const hit = '00';
+
+export default ({
+    weaponId,
+    grind,
+    special,
     percentages: {
-        native: '00',
-        aBeast: '00',
-        machine: '00',
-        dark: '00',
-        hit: '00',
+        native,
+        aBeast,
+        machine,
+        dark,
+        hit,
     },
-};
+});
 
-const tjs = {
-    weaponId: '003300',
-    grind: '00', // check boundary of weapons
-    special: '00',
-    percentages: {
-        native: '00',
-        aBeast: '00',
-        machine: '00',
-        dark: '00',
-        hit: '00',
-    },
-};
-
-const itemValues = {
-    itemId: '003300',
-    grind: '00', // check boundary of weapons
-    special: '00',
-    percentages: {
-        native: '00',
-        aBeast: '00',
-        machine: '00',
-        dark: '00',
-        hit: '00',
-    },
-};
-
+// ----------------------------------------------------------------------------
 
 // Weapon Special Values:
 
