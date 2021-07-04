@@ -1,39 +1,20 @@
-// To make an item, you need to use the /item command followed by 4 arguments, separated by commas.
+export const demoWeapons = {};
 
-// Ex. /item x,y,z,a
-
-// ----------------------------------------------------------------------------
-
-// To make weapons:
-
-// /item VVVVVVGG,SS00PPPP,PPPPPPPP,0
-
-// V = Weapon ID in HEX
-// G = Grind in HEX
-// S = Special on Weapon
-// P = Percentages on Weapon in HEX (Don't go over 100%.)
-
-const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
-    const command = '/item';
-    const {
-        native,
-        aBeast,
-        machine,
-        dark,
-        hit,
-    } = percentages;
-    const p1 = `${native}${aBeast}`; // "${SS00}${PPPP}",
-    const p2 = `${machine}${dark}${hit}`; // "${PPPPPPPP}",
-    const arguments = [
-        `${weaponId}${grind}`,
-        `${special}00${p1}`,
-        `${p2}00`,
-        '0'
-    ];
-    return `${command} ${arguments}`;
+// Mock Data
+const defaultValue = {
+    weaponId: '000000',
+    grind: '00', // check boundary of weapons
+    special: '00',
+    percentages: {
+        native: '00',
+        aBeast: '00',
+        machine: '00',
+        dark: '00',
+        hit: '00',
+    },
 };
 
-const weaponValues = {
+const tjs = {
     weaponId: '003300',
     grind: '00', // check boundary of weapons
     special: '00',
@@ -46,55 +27,107 @@ const weaponValues = {
     },
 };
 
-console.log(
-    weaponGenerator(weaponValues)
-)
+const itemValues = {
+    itemId: '003300',
+    grind: '00', // check boundary of weapons
+    special: '00',
+    percentages: {
+        native: '00',
+        aBeast: '00',
+        machine: '00',
+        dark: '00',
+        hit: '00',
+    },
+};
 
-// ----------------------------------------------------------------------------
 
-// For armors/shields:
+// Weapon Special Values:
 
-// /item VVVVVV00,000SDDDD,00EEEE00,0
+// 00: Unchanged/Nothing
+// 01: Draw
+// 02: Drain
+// 03: Fill
+// 04: Gush
+// 05: Heart
+// 06: Mind
+// 07: Soul
+// 08: Geist
+// 09: Master's
+// 0A: Lord's
+// 0B: King's
+// 0C: Charge
+// OD: Spirit
+// OE: Berserk
+// OF: Ice
+// 10: Frost
+// 11: Freeze
+// 12: Blizzard
+// 13: Bind
+// 14: Hold
+// 15: Seize
+// 16: Arrest
+// 17; Heat
+// 18: Fire
+// 19: Flame
+// 1A: Burning
+// 1B: Shock
+// 1C: Thunder
+// 1D: Storm
+// 1E: Tempest
+// 1F: Dim
+// 20: Shadow
+// 21: Dark
+// 22: Hell
+// 23: Panic
+// 24: Riot
+// 25: Havoc
+// 26: Chaos
+// 27: Devil's
+// 28: Demon's
 
-// V = Armor ID in HEX
-// S = # of slots (00, 01, 02, 03, 04)
-// D = Defense boost on armor in HEX. (Can't go over max.)
-// E = Evasion boost on armor in HEX. (Can't go over max.)
 
-// ----------------------------------------------------------------------------
+// Weapon Area Values
 
-// For items:
+// 1st part of the four digit percentage code (PPPP):
+// 01: Native
+// 02: A. Beast
+// 03: Machine
+// 04: Dark
+// 05: Hit
 
-// /item VVVVVV00,00AA0000,0,0
 
-// V = Item ID in HEX
-// A = Amount of item desired in HEX.
+// Weapon Percent Values
 
-// ----------------------------------------------------------------------------
+// 2nd part of the four digit percentage code (PPPP):
+// 00: 0%
+// 0A: 10%
+// 14: 20%
+// 32: 50%
+// 3C: 60%
+// 64: 100%
 
-// For units:
+// Ex. Making a Girasole with 30% Native 40% Dark and 50% Hit
 
-// /item VVVVVV00,000000SS,SS000000,0
+// /item 00300100,0000011E,04280532,0
 
-// V = Unit ID in HEX
-// S = Suffix in HEX. (0100 for +, 0300 for ++, FFFF for -, FEFF for --)
 
-// ----------------------------------------------------------------------------
+// S-Rank Specials:
 
-// For techniques:
+// 01: Jellen (Weakens Enemy Attack)
+// 02. Zalure (Weakens Enemy Defense
+// 05: Burning (Fire Attribute)
+// 06: Tempest (Thunder Attribute)
+// 07: Blizzard (Ice Attribute)
+// 08: Arrest (Paralysis)
+// 09: Chaos (Confusion)
+// 10: Kings (Drains Enemy XP)
+// 0A: Hell (1 Hit Kill)
+// 0B: Spirit (Drains 10% of Total TP for Double Damage)
+// 0C: Berserk (Drains 10% of Total HP for Double Damage)
+// 0D: Demon's (Reduces HP to 1/4)
+// 0E: Gush (Steals Enemy HP)
+// 0F: Geist (Steals Enemy TP)
 
-// /item 0302LL00,VV000000,00000000
-
-// V = Value of Technique
-// L = Level of Technique in HEX
-
-// ----------------------------------------------------------------------------
-
-// For meseta:
-
-// /addmeseta (amount in decimal)
-
-// ----------------------------------------------------------------------------
 
 // Technique values
 
@@ -1638,3 +1671,91 @@ console.log(
 // 023E00 Diwari
 // 023F00 Sato
 
+
+
+// Weapon Special Values:
+
+// 00: Unchanged/Nothing
+// 01: Draw
+// 02: Drain
+// 03: Fill
+// 04: Gush
+// 05: Heart
+// 06: Mind
+// 07: Soul
+// 08: Geist
+// 09: Master's
+// 0A: Lord's
+// 0B: King's
+// 0C: Charge
+// OD: Spirit
+// OE: Berserk
+// OF: Ice
+// 10: Frost
+// 11: Freeze
+// 12: Blizzard
+// 13: Bind
+// 14: Hold
+// 15: Seize
+// 16: Arrest
+// 17; Heat
+// 18: Fire
+// 19: Flame
+// 1A: Burning
+// 1B: Shock
+// 1C: Thunder
+// 1D: Storm
+// 1E: Tempest
+// 1F: Dim
+// 20: Shadow
+// 21: Dark
+// 22: Hell
+// 23: Panic
+// 24: Riot
+// 25: Havoc
+// 26: Chaos
+// 27: Devil's
+// 28: Demon's
+
+
+// Weapon Area Values
+
+// 1st part of the four digit percentage code (PPPP):
+// 01: Native
+// 02: A. Beast
+// 03: Machine
+// 04: Dark
+// 05: Hit
+
+
+// Weapon Percent Values
+
+// 2nd part of the four digit percentage code (PPPP):
+// 00: 0%
+// 0A: 10%
+// 14: 20%
+// 32: 50%
+// 3C: 60%
+// 64: 100%
+
+// Ex. Making a Girasole with 30% Native 40% Dark and 50% Hit
+
+// /item 00300100,0000011E,04280532,0
+
+
+// S-Rank Specials:
+
+// 01: Jellen (Weakens Enemy Attack)
+// 02. Zalure (Weakens Enemy Defense
+// 05: Burning (Fire Attribute)
+// 06: Tempest (Thunder Attribute)
+// 07: Blizzard (Ice Attribute)
+// 08: Arrest (Paralysis)
+// 09: Chaos (Confusion)
+// 10: Kings (Drains Enemy XP)
+// 0A: Hell (1 Hit Kill)
+// 0B: Spirit (Drains 10% of Total TP for Double Damage)
+// 0C: Berserk (Drains 10% of Total HP for Double Damage)
+// 0D: Demon's (Reduces HP to 1/4)
+// 0E: Gush (Steals Enemy HP)
+// 0F: Geist (Steals Enemy TP)
