@@ -13,7 +13,7 @@
 // S = Special on Weapon
 // P = Percentages on Weapon in HEX (Don't go over 100%.)
 
-const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
+export const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
     const command = '/item';
     const {
         native,
@@ -53,7 +53,7 @@ const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
 // V = Item ID in HEX
 // A = Amount of item desired in HEX.
 
-const itemGenerator = ({ itemId, amount }) => {
+export const itemGenerator = ({ itemId, amount }) => {
     const command = '/item';
     const arguments = [
         `${itemId}00`, // VVVVVV00,
