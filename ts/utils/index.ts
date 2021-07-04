@@ -1,6 +1,6 @@
 // rename itemGenerator -> lootGenerator
 // add generateMeseta, etc...
-import { weaponGenerator } from './itemGenerator';
+import { weaponGenerator } from './lootGenerator';
 import { tjs, defaultValue as nullWeapon } from '../../data/weaponValues.ts';
 import { defaultValue as nullItem } from '../../data/itemValues.ts';
 
