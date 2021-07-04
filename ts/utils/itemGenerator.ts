@@ -33,8 +33,8 @@ const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
     return `${command} ${arguments}`;
 };
 
-const weaponValues = {
-    weaponId: '003300',
+const tjs = {
+    weaponId: '003200',
     grind: '00', // check boundary of weapons
     special: '00',
     percentages: {
@@ -46,9 +46,6 @@ const weaponValues = {
     },
 };
 
-console.log(
-    weaponGenerator(weaponValues)
-)
 
 // ----------------------------------------------------------------------------
 
@@ -69,6 +66,32 @@ console.log(
 
 // V = Item ID in HEX
 // A = Amount of item desired in HEX.
+
+const itemGenerator = ({ itemId, amount }) => {
+    const command = '/item';
+    const arguments = [
+        `${itemId}00`, // VVVVVV00,
+        `00${amount}0000`,
+        '0',
+        '0'
+    ];
+    return `${command} ${arguments}`;
+};
+
+// const itemId = '000000'; // null 
+const itemId = '030E28'; // Heart of Daisy Chain 
+// const itemId = '030E2A'; // Heart of Rianov 303SNR
+// const itemId = '030E2C'; // Heart of Rabbit Wand
+
+const defaultItem = {
+    itemId,
+    amount: '00',
+};
+
+// console.log(
+//     weaponGenerator(tjs),'\n',
+//     itemGenerator(defaultItem),'\n',
+// );
 
 // ----------------------------------------------------------------------------
 
