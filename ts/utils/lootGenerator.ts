@@ -78,6 +78,19 @@ export const itemGenerator = ({ itemId, amount }) => {
 // V = Unit ID in HEX
 // S = Suffix in HEX. (0100 for +, 0300 for ++, FFFF for -, FEFF for --)
 
+export const unitGenerator = ({ unitId, suffix }) => {
+    const command = '/item';
+    const s1 = suffix.substr(0, 1);
+    const s2 = suffix.substr(2, 3);
+    const args = [
+        `${unitId}00`,
+        `000000${s1}`,
+        `${s2}000000`,
+        '0'
+    ];
+    return `${command} ${args}`;
+}
+
 // ----------------------------------------------------------------------------
 
 // For techniques:
