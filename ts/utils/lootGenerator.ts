@@ -1,3 +1,6 @@
+// We can refactor this file by creating a factory function generator
+// abstract args and variables in an object :)
+
 // To make an item, you need to use the /item command followed by 4 arguments, separated by commas.
 
 // Ex. /item x,y,z,a
@@ -43,6 +46,18 @@ export const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
 // S = # of slots (00, 01, 02, 03, 04)
 // D = Defense boost on armor in HEX. (Can't go over max.)
 // E = Evasion boost on armor in HEX. (Can't go over max.)
+
+export const armorGenerator = ({ armorId, slots, def, evp: evasion }) => {
+    const command = '/item';
+    const args = [
+        `${armorId}00`,
+        `000${slots}${def}`,
+        `00${evasion}`,
+        '0'
+    ];
+
+    return `${command} ${args}`;
+};
 
 // ----------------------------------------------------------------------------
 
