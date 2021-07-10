@@ -1,12 +1,3 @@
-// We can refactor this file by creating a factory function generator
-// abstract args and variables in an object :)
-
-// To make an item, you need to use the /item command followed by 4 arguments, separated by commas.
-
-// Ex. /item x,y,z,a
-
-// ----------------------------------------------------------------------------
-
 // To make weapons:
 
 // /item VVVVVVGG,SS00PPPP,PPPPPPPP,0
@@ -79,11 +70,6 @@ export const itemGenerator = ({ itemId, amount }) => {
     return `${command} ${args}`;
 };
 
-// console.log(
-// ` weapon -> ${weaponGenerator(spreadNeedle)}\n`,
-// `item  -> ${itemGenerator(defaultItem)}\n`,
-// );
-
 // ----------------------------------------------------------------------------
 
 // For units:
@@ -104,7 +90,7 @@ export const unitGenerator = ({ unitId, suffix }) => {
         '0'
     ];
     return `${command} ${args}`;
-}
+};
 
 // ----------------------------------------------------------------------------
 
@@ -115,15 +101,20 @@ export const unitGenerator = ({ unitId, suffix }) => {
 // V = Value of Technique
 // L = Level of Technique in HEX
 
+export const techniqueGenerator = ({ value, level }) => {
+    const command = '/item';
+    const args = [
+        `0302${level}00`,
+        `${value}000000`,
+        '00000000'
+    ];
+    return `${command} ${args}`;
+};
+
 // ----------------------------------------------------------------------------
 
 // For meseta:
 
 // /addmeseta (amount in decimal)
 
-export const addMeseta = ({ amount }) => {
-    const command = '/addmeseta';
-    const args = [ amount ];
-
-    return `${command} ${args}`;
-}
+export const addMeseta = ({ amount }) => `/addmeseta ${amount}`;
