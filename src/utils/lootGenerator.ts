@@ -1,13 +1,10 @@
 // To make weapons:
-
 // /item VVVVVVGG,SS00PPPP,PPPPPPPP,0
-
 // V = Weapon ID in HEX
 // G = Grind in HEX
 // S = Special on Weapon
 // P = Percentages on Weapon in HEX (Don't go over 100%.)
-
-export const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
+export const weaponGenerator = ({ weaponId, grind, special, percentages }: IWeaponGenerator) => {
     const command = '/item';
     const {
         native,
@@ -27,18 +24,13 @@ export const weaponGenerator = ({ weaponId, grind, special, percentages }) => {
     return `${command} ${args}`;
 };
 
-// ----------------------------------------------------------------------------
-
 // For armors/shields:
-
 // /item VVVVVV00,000SDDDD,00EEEE00,0
-
 // V = Armor ID in HEX
 // S = # of slots (00, 01, 02, 03, 04)
 // D = Defense boost on armor in HEX. (Can't go over max.)
 // E = Evasion boost on armor in HEX. (Can't go over max.)
-
-export const armorGenerator = ({ armorId, slots, def, evp: evasion }) => {
+export const armorGenerator = ({ armorId, slots, def, evp: evasion }: IArmorGenerator) => {
     const command = '/item';
     const args = [
         `${armorId}00`,
@@ -50,16 +42,11 @@ export const armorGenerator = ({ armorId, slots, def, evp: evasion }) => {
     return `${command} ${args}`;
 };
 
-// ----------------------------------------------------------------------------
-
 // For items:
-
 // /item VVVVVV00,00AA0000,0,0
-
 // V = Item ID in HEX
 // A = Amount of item desired in HEX.
-
-export const itemGenerator = ({ itemId, amount }) => {
+export const itemGenerator = ({ itemId, amount }: IItemGenerator) => {
     const command = '/item';
     const args = [
         `${itemId}00`, // VVVVVV00,
@@ -70,16 +57,11 @@ export const itemGenerator = ({ itemId, amount }) => {
     return `${command} ${args}`;
 };
 
-// ----------------------------------------------------------------------------
-
 // For units:
-
 // /item VVVVVV00,000000SS,SS000000,0
-
 // V = Unit ID in HEX
 // S = Suffix in HEX. (0100 for +, 0300 for ++, FFFF for -, FEFF for --)
-
-export const unitGenerator = ({ unitId, suffix }) => {
+export const unitGenerator = ({ unitId, suffix }: IUnitGenerator) => {
     const command = '/item';
     const s1 = suffix.substr(0, 1);
     const s2 = suffix.substr(2, 3);
@@ -92,16 +74,11 @@ export const unitGenerator = ({ unitId, suffix }) => {
     return `${command} ${args}`;
 };
 
-// ----------------------------------------------------------------------------
-
 // For techniques:
-
 // /item 0302LL00,VV000000,00000000
-
 // V = Value of Technique
 // L = Level of Technique in HEX
-
-export const techniqueGenerator = ({ value, level }) => {
+export const techniqueGenerator = ({ value, level }: ITechniqueGenerator) => {
     const command = '/item';
     const args = [
         `0302${level}00`,
@@ -111,10 +88,49 @@ export const techniqueGenerator = ({ value, level }) => {
     return `${command} ${args}`;
 };
 
-// ----------------------------------------------------------------------------
-
 // For meseta:
-
 // /addmeseta (amount in decimal)
+export const addMeseta = ({ amount }: IAddMeseta) => `/addmeseta ${amount}`;
 
-export const addMeseta = ({ amount }) => `/addmeseta ${amount}`;
+type Hex = 0xFF | string;
+
+type Percentages = {
+    native: Hex;
+    aBeast: Hex;
+    machine: Hex;
+    dark: Hex;
+    hit: Hex;
+}
+
+interface IWeaponGenerator {
+    weaponId: Hex;
+    grind: Hex;
+    special: Hex;
+    percentages: Percentages;
+}
+
+interface IArmorGenerator {
+    armorId: Hex;
+    slots: Hex;
+    def: Hex;
+    evp: Hex
+}
+
+interface IItemGenerator {
+    itemId: Hex;
+    amount: Hex;
+}
+
+interface IUnitGenerator {
+    unitId: Hex;
+    suffix: Hex;
+}
+
+interface ITechniqueGenerator {
+    value: Hex;
+    level: Hex;
+}
+
+interface IAddMeseta {
+    amount: number;
+}
