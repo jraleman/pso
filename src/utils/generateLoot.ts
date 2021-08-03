@@ -1,3 +1,9 @@
+const generateLoot = ({ cmd, code }: IGenerateLoot): string | null => {
+    const cmdList = ['/items', 'addMeseta'];
+    const isValid = !cmdList.includes(cmd) && code.length !== 4;
+    return isValid ? `${cmd} ${code}` : null;
+}
+
 // To make weapons:
 // /item VVVVVVGG,SS00PPPP,PPPPPPPP,0
 // V = Weapon ID in HEX
@@ -5,7 +11,7 @@
 // S = Special on Weapon
 // P = Percentages on Weapon in HEX (Don't go over 100%.)
 export const weaponGenerator = ({ weaponId, grind, special, percentages }: IWeaponGenerator) => {
-    const command = '/item';
+    const cmd = '/item';
     const {
         native,
         aBeast,
@@ -15,13 +21,13 @@ export const weaponGenerator = ({ weaponId, grind, special, percentages }: IWeap
     } = percentages;
     const p1 = `${native}${aBeast}`; // "${SS00}${PPPP}",
     const p2 = `${machine}${dark}${hit}`; // "${PPPPPPPP}",
-    const args = [
+    const code = [
         `${weaponId}${grind}`,
         `${special}00${p1}`,
         `${p2}00`,
         '0'
     ];
-    return `${command} ${args}`;
+    return generateLoot({ cmd, code });
 };
 
 // For armors/shields:
@@ -31,15 +37,14 @@ export const weaponGenerator = ({ weaponId, grind, special, percentages }: IWeap
 // D = Defense boost on armor in HEX. (Can't go over max.)
 // E = Evasion boost on armor in HEX. (Can't go over max.)
 export const armorGenerator = ({ armorId, slots, def, evp: evasion }: IArmorGenerator) => {
-    const command = '/item';
-    const args = [
+    const cmd = '/item';
+    const code = [
         `${armorId}00`,
         `000${slots}${def}`,
         `00${evasion}`,
         '0'
     ];
-
-    return `${command} ${args}`;
+    return generateLoot({ cmd, code });
 };
 
 // For items:
@@ -47,14 +52,14 @@ export const armorGenerator = ({ armorId, slots, def, evp: evasion }: IArmorGene
 // V = Item ID in HEX
 // A = Amount of item desired in HEX.
 export const itemGenerator = ({ itemId, amount }: IItemGenerator) => {
-    const command = '/item';
-    const args = [
+    const cmd = '/item';
+    const code = [
         `${itemId}00`, // VVVVVV00,
         `00${amount}0000`,
         '0',
         '0'
     ];
-    return `${command} ${args}`;
+    return generateLoot({ cmd, code });
 };
 
 // For units:
@@ -62,16 +67,16 @@ export const itemGenerator = ({ itemId, amount }: IItemGenerator) => {
 // V = Unit ID in HEX
 // S = Suffix in HEX. (0100 for +, 0300 for ++, FFFF for -, FEFF for --)
 export const unitGenerator = ({ unitId, suffix }: IUnitGenerator) => {
-    const command = '/item';
-    const s1 = suffix.substr(0, 1);
-    const s2 = suffix.substr(2, 3);
-    const args = [
+    const cmd = '/item';
+    const s1 = `${suffix}`.substr(0, 1);
+    const s2 = `${suffix}`.substr(2, 3);
+    const code = [
         `${unitId}00`,
         `000000${s1}`,
         `${s2}000000`,
         '0'
     ];
-    return `${command} ${args}`;
+    return generateLoot({ cmd, code });
 };
 
 // For techniques:
@@ -79,13 +84,13 @@ export const unitGenerator = ({ unitId, suffix }: IUnitGenerator) => {
 // V = Value of Technique
 // L = Level of Technique in HEX
 export const techniqueGenerator = ({ value, level }: ITechniqueGenerator) => {
-    const command = '/item';
-    const args = [
+    const cmd = '/item';
+    const code = [
         `0302${level}00`,
         `${value}000000`,
         '00000000'
     ];
-    return `${command} ${args}`;
+    return generateLoot({ cmd, code });
 };
 
 // For meseta:
@@ -134,3 +139,10 @@ interface ITechniqueGenerator {
 interface IAddMeseta {
     amount: number;
 }
+
+interface IGenerateLoot {
+    cmd: string;
+    code: string[];
+}
+
+export default generateLoot;

@@ -1,6 +1,8 @@
-import getWarpCommand from './getWarpCommand';
+import generateWarp from './generateWarp';
+import generateLoot from './generateLoot';
 
 export default {
-    getWarpCommand,
+    generateWarp,
+    generateLoot,
 };
 

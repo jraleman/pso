@@ -55,7 +55,7 @@ const warpData: WarpData = {
     },
 };
 
-const getWarpCommand = ({ episode, area, solo = true }: IGetWarpCommand): string => {
+const generateWarp = ({ episode, area, solo = true }: IGenerateWarp): string => {
     const command = solo ? '/warpme' : `/warpall`;
     const warpValue = warpData[episode].filter((value: string) => value === area);
 
@@ -63,13 +63,13 @@ const getWarpCommand = ({ episode, area, solo = true }: IGetWarpCommand): string
 };
 
 export const warpEpisode1 = ({ area, solo }: IWarpEpisode): string =>
-    getWarpCommand({ episode: 1, area, solo });
+    generateWarp({ episode: 1, area, solo });
 
 export const warpEpisode2 = ({ area, solo }: IWarpEpisode): string => 
-    getWarpCommand({ episode: 2, area, solo });
+    generateWarp({ episode: 2, area, solo });
 
 export const warpEpisode4 = ({ area, solo }: IWarpEpisode): string => 
-    getWarpCommand({ episode: 4, area, solo });
+    generateWarp({ episode: 4, area, solo });
 
 type WarpData = {
     [key: number]: {
@@ -82,8 +82,8 @@ interface IWarpEpisode {
     solo?: boolean;
 };
 
-interface IGetWarpCommand extends IWarpEpisode {
+interface IGenerateWarp extends IWarpEpisode {
     episode: number;
 };
 
-export default getWarpCommand;
+export default generateWarp;
