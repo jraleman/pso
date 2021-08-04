@@ -1,3 +1,7 @@
+import { WarpData } from '../types/warp';
+import { IGenerateWarp, IWarpEpisode } from '../interfaces/warp';
+
+// all values after 18, (10 for EP4), segfault happens :(
 const warpData: WarpData[] = [
     {
         0: 'Pioneer 2',
@@ -39,6 +43,7 @@ const warpData: WarpData[] = [
         16: 'Seaside Night',
         17: 'Tower',
     },
+    // {},
     {
         0: 'Pioneer 2',
         1: 'Crater (Eastern Route)',
@@ -56,8 +61,12 @@ const warpData: WarpData[] = [
 
 const generateWarp = ({ episode, area, solo = true }: IGenerateWarp): string => {
     const command: string = solo ? '/warpme' : `/warpall`;
-    // const warpValue = warpData[episode].filter((value: string) => value === area);
-    const warpValue = 0;
+
+    const warpValue: number | boolean = (warpData[episode][area] === 'area') ? area : false;
+
+    for (const warp of warpData) {
+        console.log(warp);
+    }
 
     return warpValue ? `${command} ${warpValue}` : 'Wrong episode/area code';
 };
@@ -70,18 +79,5 @@ export const warpEpisode2 = ({ area, solo }: IWarpEpisode): string =>
 
 export const warpEpisode4 = ({ area, solo }: IWarpEpisode): string => 
     generateWarp({ episode: 4, area, solo });
-
-type WarpData = {
-    [key: number]: string;
-};
-
-interface IWarpEpisode {
-    area: string;
-    solo?: boolean;
-};
-
-interface IGenerateWarp extends IWarpEpisode {
-    episode: number;
-};
 
 export default generateWarp;

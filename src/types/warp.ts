@@ -1,3 +1,3 @@
 export type WarpData = {
-    [key: number]: string | object;
+    [key: number]: string;
 };

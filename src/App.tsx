@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import logo from './assets/logo.svg';
+import SandboxCalculator from './containers/SandboxCalculators';
 
 const App = () => {
   const content = 'Edit src/App.tsx and save to reload.';
@@ -14,6 +15,7 @@ const App = () => {
           {footer}
         </Link>
       </Header>
+      <SandboxCalculator />
     </Container>
   );
 };
