@@ -19,7 +19,7 @@ const questsByEpisode = {
     ],
 };
 
-const questsByArea = {
+const questsByArea: any = {
     forest: [
         { 
             shortName: 'TE',
@@ -183,6 +183,22 @@ const questsData = {
 
 // TODO:
 // add for questsBySectionId, questsData
-const recommendedQuests = ({ area, sectionId }) => questsByArea[area];
+const recommendedQuests = ({ area, sectionId }: IRecommendedQuests) => questsByArea[area];
+
+interface IRecommendedQuests {
+    area: string;
+    sectionId: string;
+}
+
+type QuestByArea = {
+    [key: string]: [
+        {
+            shortName: string;
+            name: string;
+            menuPath: string;
+            link: string;
+        }
+    ]
+}
 
 export default recommendedQuests;

@@ -1,5 +1,5 @@
-const warpData: WarpData = {
-    1: {
+const warpData: WarpData[] = [
+    {
         0: 'Pioneer 2',
         1: 'Forest 1',
         2: 'Forest 2',
@@ -19,7 +19,7 @@ const warpData: WarpData = {
         16: 'Battle Spaceship',
         17: 'Battle Palace (aka Temple)',
     },
-    2: {
+    {
         0: 'Lab',
         1: 'VR Temple α',
         2: 'VR Temple β',
@@ -39,8 +39,7 @@ const warpData: WarpData = {
         16: 'Seaside Night',
         17: 'Tower',
     },
-    // 3: skipped (third episode is from another game)
-    4: {
+    {
         0: 'Pioneer 2',
         1: 'Crater (Eastern Route)',
         2: 'Crater (Western Route)',
@@ -53,11 +52,12 @@ const warpData: WarpData = {
         9: 'Saint Million / Shambertin',
         10: 'Test Map (Caves 2)',
     },
-};
+];
 
 const generateWarp = ({ episode, area, solo = true }: IGenerateWarp): string => {
-    const command = solo ? '/warpme' : `/warpall`;
-    const warpValue = warpData[episode].filter((value: string) => value === area);
+    const command: string = solo ? '/warpme' : `/warpall`;
+    // const warpValue = warpData[episode].filter((value: string) => value === area);
+    const warpValue = 0;
 
     return warpValue ? `${command} ${warpValue}` : 'Wrong episode/area code';
 };
@@ -72,9 +72,7 @@ export const warpEpisode4 = ({ area, solo }: IWarpEpisode): string =>
     generateWarp({ episode: 4, area, solo });
 
 type WarpData = {
-    [key: number]: {
-        [key: number]: string;
-    }
+    [key: number]: string;
 };
 
 interface IWarpEpisode {
