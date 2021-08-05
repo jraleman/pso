@@ -1,3 +1,13 @@
+import { 
+    IWeaponGenerator,
+    IArmorGenerator,
+    IItemGenerator,
+    IUnitGenerator,
+    ITechniqueGenerator,
+    IAddMeseta,
+    IGenerateLoot,
+ } from '../interfaces/loot';
+
 const generateLoot = ({ cmd, code }: IGenerateLoot): string | null => {
     const cmdList = ['/items', 'addMeseta'];
     const isValid = !cmdList.includes(cmd) && code.length !== 4;
@@ -96,53 +106,5 @@ export const techniqueGenerator = ({ value, level }: ITechniqueGenerator) => {
 // For meseta:
 // /addmeseta (amount in decimal)
 export const addMeseta = ({ amount }: IAddMeseta) => `/addmeseta ${amount}`;
-
-type Hex = 0xFF | string;
-
-type Percentages = {
-    native: Hex;
-    aBeast: Hex;
-    machine: Hex;
-    dark: Hex;
-    hit: Hex;
-}
-
-interface IWeaponGenerator {
-    weaponId: Hex;
-    grind: Hex;
-    special: Hex;
-    percentages: Percentages;
-}
-
-interface IArmorGenerator {
-    armorId: Hex;
-    slots: Hex;
-    def: Hex;
-    evp: Hex
-}
-
-interface IItemGenerator {
-    itemId: Hex;
-    amount: Hex;
-}
-
-interface IUnitGenerator {
-    unitId: Hex;
-    suffix: Hex;
-}
-
-interface ITechniqueGenerator {
-    value: Hex;
-    level: Hex;
-}
-
-interface IAddMeseta {
-    amount: number;
-}
-
-interface IGenerateLoot {
-    cmd: string;
-    code: string[];
-}
 
 export default generateLoot;

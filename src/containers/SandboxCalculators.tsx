@@ -11,6 +11,7 @@ const warpCalculatorProps = {
 
 const SandboxCalculator = (): JSX.Element => {
     const { episode, area, solo } = warpCalculatorProps;
+
     return (
         <>
             <div>SandboxCalculator</div>
