@@ -11,7 +11,7 @@ export interface IArmorGenerator {
     armorId: Hex;
     slots: Hex;
     def: Hex;
-    evp: Hex
+    evp: Hex;
 }
 
 export interface IItemGenerator {
@@ -30,10 +30,18 @@ export interface ITechniqueGenerator {
 }
 
 export interface IAddMeseta {
-    amount: number;
+    mesetas: number;
 }
 
 export interface IGenerateLoot {
     cmd: string;
     code: string[];
 }
+
+export interface ILootCalculator extends 
+    IWeaponGenerator,
+    IArmorGenerator,
+    IItemGenerator,
+    IUnitGenerator,
+    ITechniqueGenerator,
+    IAddMeseta {}

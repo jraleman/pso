@@ -9,14 +9,39 @@ const warpCalculatorProps = {
     solo: false,
 };
 
+const lootCalculatorProps = {
+    weaponId: '',
+    grind: '',
+    special: '',
+    percentages: {
+        native: '',
+        aBeast: '',
+        machine: '',
+        dark: '',
+        hit: '',
+    },
+    armorId: '',
+    slots: '',
+    def: '',
+    evp: '',
+    itemId: '',
+    amount: '',
+    unitId: '',
+    suffix: '',
+    value: '',
+    level: '',
+    mesetas: 0,
+};
+
 const SandboxCalculator = (): JSX.Element => {
     const { episode, area, solo } = warpCalculatorProps;
 
     return (
         <>
             <div>SandboxCalculator</div>
+            <hr />
             <WarpCalculator episode={episode} area={area} solo={solo} />
-            <LootCalculator />
+            <LootCalculator {...lootCalculatorProps} />
         </>
     );
 };

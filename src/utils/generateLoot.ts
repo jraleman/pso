@@ -105,6 +105,6 @@ export const techniqueGenerator = ({ value, level }: ITechniqueGenerator) => {
 
 // For meseta:
 // /addmeseta (amount in decimal)
-export const addMeseta = ({ amount }: IAddMeseta) => `/addmeseta ${amount}`;
+export const addMeseta = ({ mesetas = 0 }: IAddMeseta) => `/addmeseta ${mesetas}`;
 
 export default generateLoot;
