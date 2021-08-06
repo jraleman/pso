@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import AppHeader from './components/AppHeader';
+import AsciiGallery from './containers/AsciiGallery';
 import SandboxCalculator from './containers/SandboxCalculators';
 
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
     <Container>
       <AppHeader />
       <SandboxCalculator />
+      <AsciiGallery />
     </Container>
   );
 };
