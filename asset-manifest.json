@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/pso/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/pso/static/js/main.6a52d54b.chunk.js",
+    "main.js.map": "/pso/static/js/main.6a52d54b.chunk.js.map",
+    "runtime-main.js": "/pso/static/js/runtime-main.64975a76.js",
+    "runtime-main.js.map": "/pso/static/js/runtime-main.64975a76.js.map",
+    "static/js/2.fce1525d.chunk.js": "/pso/static/js/2.fce1525d.chunk.js",
+    "static/js/2.fce1525d.chunk.js.map": "/pso/static/js/2.fce1525d.chunk.js.map",
+    "static/js/3.f11a1010.chunk.js": "/pso/static/js/3.f11a1010.chunk.js",
+    "static/js/3.f11a1010.chunk.js.map": "/pso/static/js/3.f11a1010.chunk.js.map",
+    "index.html": "/pso/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/pso/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.fce1525d.chunk.js.LICENSE.txt": "/pso/static/js/2.fce1525d.chunk.js.LICENSE.txt",
+    "static/media/al-rappy.ddcd8332.jpg": "/pso/static/media/al-rappy.ddcd8332.jpg",
+    "static/media/del-rappy.9c9d0c41.jpg": "/pso/static/media/del-rappy.9c9d0c41.jpg",
+    "static/media/logo.6ce24c58.svg": "/pso/static/media/logo.6ce24c58.svg",
+    "static/media/love-rappy1.c37b43f4.jpg": "/pso/static/media/love-rappy1.c37b43f4.jpg",
+    "static/media/rappy.66f75aeb.jpg": "/pso/static/media/rappy.66f75aeb.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.64975a76.js",
+    "static/js/2.fce1525d.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.6a52d54b.chunk.js"
+  ]
+}
