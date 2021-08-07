@@ -1,6 +1,6 @@
 import React from 'react';
 import AsciiPicture from '../components/AsciiPicture';
-import alRappy from '../assets/rappies/al-rappy.png';
+import alRappy from '../assets/rappies/al-rappy-og.jpg';
 
 // create thumbnail with images, change to ascii (text) on hover
 // take a look at meme/ repository to implement gallery

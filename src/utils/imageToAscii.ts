@@ -4,9 +4,9 @@ const imageToAscii = async ({ src }: IImageToAscii): Promise<AsciiImage> => {
     let asciiImage: AsciiImage = null;
 
     const config = {
-        maxWidth: 400,
-        maxHeight: 700,
-        avoidedCharacters: ["#", "a", '$'],
+        maxWidth: 64,
+        maxHeight: 64,
+        // avoidedCharacters: ["#", "a", '$'],
       };
     try {
       asciiImage = await getAsciiImage(src, config);
