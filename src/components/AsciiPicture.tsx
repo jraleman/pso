@@ -21,19 +21,18 @@ const AsciiPicture = ({ src, alt = '' }: IAsciiPicture): JSX.Element => {
     };
 
     const lines = asciiOutput?.split('\n');
-    console.log('asciiOutput', asciiOutput);
+    // console.log('asciiOutput', asciiOutput);
     return (
-        <ImageFrame>
-            {/* change state to onHover on div */}
-            <img src={src} alt={alt} />
-            <button onClick={onClick}>Ascii</button>
-            <PrintAsciiLines lines={lines} />
+        <ImageFrame onClick={onClick}>
+            {!asciiOutput && <img src={src} alt={alt} />}
+            {asciiOutput && <PrintAsciiLines lines={lines} />}
         </ImageFrame>
     );
 };
 
 const ImageFrame = styled.div`
     font-size: 6px;
+    margin: 0 auto;
     text-align: center;
 `;
 
