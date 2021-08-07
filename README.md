@@ -1,4 +1,4 @@
-# pso-gh-pages
+# PSO - Github Page
 
 Github pages of Phantasy Star Online related content
 
