@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import imageToAscii from '../utils/imageToAscii';
 
@@ -7,25 +7,36 @@ const uniqueId = require("lodash.uniqueid");
 const PrintAsciiLines = ({ lines = [''] }) => (
     <>
         {lines?.map((line: string) => 
-            line && (<ImageLine key={uniqueId()}>{line}</ImageLine>)
+            line && (<AsciiLine key={uniqueId()}>{line}</AsciiLine>)
         )}
     </>
 );
 
 const AsciiPicture = ({ src, alt = '' }: IAsciiPicture): JSX.Element => {
     const [asciiOutput, setAsciiOutput] = useState<string | null>('');
+    const [showAscii, setShowAscii] = useState<boolean>(false);
 
-    const onClick = async () => {
-        const ascii = await imageToAscii({ src: src.toString() });
-        setAsciiOutput(ascii);
-    };
+    useEffect(() => {
+        const generateAsciiImage = async () => {
+            const asciiImage = await imageToAscii({ src });
+            setAsciiOutput(asciiImage);
+        };
+        generateAsciiImage();
+    }, [src]);
+
+    const onMouseDown = useCallback(() => {
+        setShowAscii(true);
+    }, []);
+
+    const onMouseUp =  useCallback(() => {
+        setShowAscii(false);
+    }, []);
 
     const lines = asciiOutput?.split('\n');
-    // console.log('asciiOutput', asciiOutput);
     return (
-        <ImageFrame onClick={onClick}>
-            {!asciiOutput && <img src={src} alt={alt} />}
-            {asciiOutput && <PrintAsciiLines lines={lines} />}
+        <ImageFrame onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+            {!showAscii && <Image src={src} alt={alt} />}
+            {showAscii && <PrintAsciiLines lines={lines} />}
         </ImageFrame>
     );
 };
@@ -33,13 +44,26 @@ const AsciiPicture = ({ src, alt = '' }: IAsciiPicture): JSX.Element => {
 const ImageFrame = styled.div`
     font-size: 6px;
     margin: 0 auto;
-    text-align: center;
+    border: #282c34;
+    border-width: medium;
+    border-style: solid;
+    border-radius: 2em;
+    height: 425px;
+    width: 425px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
 `;
 
-const ImageLine = styled.code`
+const AsciiLine = styled.code`
     display: block;
-    max-width: 101ch;
     white-space: pre;
+`;
+
+const Image = styled.img`
+    width: auto;
+    height: 100%;
 `;
 
 export interface IAsciiPicture {

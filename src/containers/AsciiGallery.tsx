@@ -20,14 +20,16 @@ const AsciiGallery = (): JSX.Element => {
     const images = rappies;
     return (
         <GalleryContainer>
+            <hr />
             <Title>{title}</Title>
             {images?.map((src) => <AsciiPicture src={src} />)}
+            <hr />
         </GalleryContainer>
     );
 };
 
 const GalleryContainer = styled.div`
-
+    display: inline-grid;
 `;
 
 const Title = styled.h3`

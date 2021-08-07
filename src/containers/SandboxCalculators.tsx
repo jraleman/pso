@@ -38,10 +38,11 @@ const SandboxCalculator = (): JSX.Element => {
 
     return (
         <>
-            <div>SandboxCalculator</div>
             <hr />
+            <div>SandboxCalculator</div>
             <WarpCalculator episode={episode} area={area} solo={solo} />
             <LootCalculator {...lootCalculatorProps} />
+            <hr />
         </>
     );
 };
