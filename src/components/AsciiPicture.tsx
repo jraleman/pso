@@ -12,9 +12,9 @@ const PrintAsciiLines = ({ lines = [''] }) => (
     </>
 );
 
-const AsciiPicture = ({ src, alt = '' }: IAsciiPicture): JSX.Element => {
+const AsciiPicture = ({ src, alt = '', isAscii = false }: IAsciiPicture): JSX.Element => {
     const [asciiOutput, setAsciiOutput] = useState<string | null>('');
-    const [showAscii, setShowAscii] = useState<boolean>(false);
+    const [showAscii, setShowAscii] = useState<boolean>(isAscii);
 
     useEffect(() => {
         const generateAsciiImage = async () => {
@@ -34,7 +34,12 @@ const AsciiPicture = ({ src, alt = '' }: IAsciiPicture): JSX.Element => {
 
     const lines = asciiOutput?.split('\n');
     return (
-        <ImageFrame onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+        <ImageFrame
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onTouchStart={onMouseDown}
+            onTouchEnd={onMouseUp}
+        >
             {!showAscii && <Image src={src} alt={alt} />}
             {showAscii && <PrintAsciiLines lines={lines} />}
         </ImageFrame>
@@ -54,6 +59,7 @@ const ImageFrame = styled.div`
     margin-bottom: 2em;
     margin-left: 2em;
     margin-right: 2em;
+    cursor: pointer;
 `;
 
 const AsciiLine = styled.code`
@@ -69,6 +75,7 @@ const Image = styled.img`
 export interface IAsciiPicture {
     src: string;
     alt?: string;
+    isAscii?: boolean;
 }
 
 export default AsciiPicture;
